@@ -25,20 +25,20 @@ The eight language commands each consist of a single character:
 | `]`         | If the byte at the data pointer is not 0, jump to the corresponding '[' |
 
 ## Building:
-#### To get started, clone the repository and compile the source code:
-
 Download the source code by running the following code in your command prompt:
 
 	git clone https://github.com/jsob0/brainfuck.git
 
 or simply [grab](https://github.com/jsob0/brainfuck/archive/master.zip) a copy of the source code as a Zip file.
-	
+
+Compile the source code using GNU Compiler Collection (GCC):
+
 	cd brainfuck
 	gcc brainfuck.c -o brainfuck
 
 ## Usage
 
-	./brainfuck [-vh] <source file>
+	./brainfuck [-vh] [file...]
 	-v --version    show interpreter version.
 	-h --help       show help menu.
 	
@@ -51,13 +51,13 @@ Prints the result of the program and the time in which it was execute:
 	
 	The program took 0.001000 seconds to execute.
 
-## Error handling:
-The interpreter has error handling:
+### Error handling:
+The interpreter has error handling, it prints the path to the file and the character where the error occurred and below the error message.
 
 	File "hello.bf", char 108
 	Error: Byte overflow (256).
 
-has support for most commands:
+Supports characters:
 
 | Character   | Exception                           |
 |:-----------:|-------------------------------------|
@@ -65,8 +65,6 @@ has support for most commands:
 | `<`         | Pointer index out of range (-1).    |
 | `+`         | Byte overflow (256).                |
 | `-`         | Byte overflow (-1).                 |
-| `.`         | -                                   |
-| `,`         | -                                   |
 | `[`         | End of loop not found.              |
 | `]`         | Start of loop not found.            |
 
