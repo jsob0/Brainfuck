@@ -56,25 +56,25 @@ int main(int argc, char **argv) {
 
             strcpy(source, argv[i + 1]);
             strcpy(brainfuck_path_input, "console input");
-		}
-		++i;
+        }
+        ++i;
     } while (i < argc);
 
-	if (NULL == source) {
-		// Set the path input if the user has not chose the execute argument.
-		strcpy(brainfuck_path_input, argv[argc - 1]);
+    if (NULL == source) {
+        // Set the path input if the user has not chose the execute argument.
+        strcpy(brainfuck_path_input, argv[argc - 1]);
         source = brainfuck_read_file(brainfuck_path_input);
         if (NULL == source) return 1;
     }
 
-	clock_t t;
-	t = clock();	
+    clock_t t;
+    t = clock();
 
     if (0 != brainfuck_interpret(source)) {
-		t = clock() - t;
-		double time_taken = (double)t / CLOCKS_PER_SEC;
-		printf("\nThe program took %f seconds to execute.\n", time_taken);
-	}
+        t = clock() - t;
+        double time_taken = (double)t / CLOCKS_PER_SEC;
+        printf("\nThe program took %f seconds to execute.\n", time_taken);
+    }
 
     free(source);
     return 0;
@@ -94,15 +94,15 @@ int brainfuck_interpret(char *source) {
     int source_len = strlen(source);
 
     // Open the output file if the user has set it.
-	FILE *file_output = NULL;
-	if (0 != *brainfuck_path_output) {
-		file_output = fopen(brainfuck_path_output, "w");
-		if (NULL == file_output) {
-			brainfuck_err_init("Unable to open the output file `%s`\n",
-					brainfuck_path_output);
-			return 1;
-		}
-	}
+    FILE *file_output = NULL;
+    if (0 != *brainfuck_path_output) {
+        file_output = fopen(brainfuck_path_output, "w");
+        if (NULL == file_output) {
+            brainfuck_err_init("Unable to open the output file `%s`\n",
+                    brainfuck_path_output);
+            return 1;
+        }
+    }
 
     while (ip < source_len && !isError) {
         switch (source[ip]) {
@@ -138,14 +138,14 @@ int brainfuck_interpret(char *source) {
             break;
         // Output the byte at the data pointer.
         case BRAINFUCK_OP_OUTPUT:
-			fputc(data[ptr], (file_output) ? file_output : stdout);
+            fputc(data[ptr], (file_output) ? file_output : stdout);
             break;
         // Input a byte and store it at the data pointer.
         case BRAINFUCK_OP_INPUT:
             data[ptr] = getchar();
             break;
         // If the byte at the data pointer is 0, jump to the corresponding ']'
-		case BRAINFUCK_OP_LOOP_START: {
+        case BRAINFUCK_OP_LOOP_START: {
             if (0 == data[ptr]) {
                 int depth = 1, ipError = ip;
                 while (depth) {
@@ -186,7 +186,7 @@ int brainfuck_interpret(char *source) {
     }
 
     if (file_output)
-		fclose(file_output);
+        fclose(file_output);
     free(data);
     return !isError;
 }
