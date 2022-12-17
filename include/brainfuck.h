@@ -8,7 +8,7 @@
 #define BRAINFUCK_DATA_SIZE 30000
 
 // The maximum size of a single byte in the data.
-#define BRAINFUCK_BYTE_SIZE 255
+#define BRAINFUCK_BYTE_SIZE 127
 
 /* Brainfuck opeartors */
 

@@ -15,14 +15,14 @@ The eight language commands each consist of a single character:
 
 | Command         | Meaning                                                                 | C equivalent                             |
 |:---------------:|-------------------------------------------------------------------------|------------------------------------------|
-| (Program Start) |                                                                         | char data[30000] = {0}; char ptr = data; |
+| (Program Start) |                                                                         | char data[30000] = {0}; int ptr = 0;     |
 | `>`             | Increment the data pointer.                                             | `++ptr;`                                 |
 | `<`             | Decrement the data pointer.                                             | `--ptr;`                                 |
-| `+`             | Increment the byte at the data pointer.                                 | `++*ptr;`                                |
-| `-`             | Decrement the byte at the data pointer.                                 | `--*ptr;`                                |
-| `.`             | Output the byte at the data pointer.                                    | `putchar(*ptr);`                         |
-| `,`             | Input a byte and store it at the data pointer.                          | `*ptr = getchar();`                      |
-| `[`             | If the byte at the data pointer is 0, jump to the corresponding ']'     | `while (*ptr) {`                         |
+| `+`             | Increment the byte at the data pointer.                                 | `++data[ptr];`                           |
+| `-`             | Decrement the byte at the data pointer.                                 | `--data[ptr];`                           |
+| `.`             | Output the byte at the data pointer.                                    | `putchar(data[ptr]);`                    |
+| `,`             | Input a byte and store it at the data pointer.                          | `data[ptr] = getchar();`                 |
+| `[`             | If the byte at the data pointer is 0, jump to the corresponding ']'     | `while (data[ptr]) {`                    |
 | `]`             | If the byte at the data pointer is not 0, jump to the corresponding '[' | `}`                                      |
 
 ## Usage

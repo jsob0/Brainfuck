@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
 int brainfuck_interpret(char *source) {
     // Data for brainfuck code, filled with zeros and a pointer which points
     // on the current data.
-    unsigned char *data = (unsigned char *)malloc(BRAINFUCK_DATA_SIZE);
+    char *data = (char *)malloc(BRAINFUCK_DATA_SIZE);
     if (NULL == data) {
         brainfuck_err_init("Failed to allocate memory space.\n");
         return 1;
@@ -108,7 +108,7 @@ int brainfuck_interpret(char *source) {
         switch (source[ip]) {
         // Increment the data pointer.
         case BRAINFUCK_OP_NEXT:
-            if (BRAINFUCK_DATA_SIZE == ++ptr) {
+            if (BRAINFUCK_DATA_SIZE + 1 == ++ptr) {
                 brainfuck_err_code(ip, "Pointer index out of range (%d).\n",
                     BRAINFUCK_DATA_SIZE + 1);
                 ++isError;
@@ -123,9 +123,7 @@ int brainfuck_interpret(char *source) {
             break;
         // Increment the byte at the data pointer.
         case BRAINFUCK_OP_ADD:
-	    // Compare the byte to zero, because when byte overflows value
-		// returns to the beginning of the.
-            if (0 == ++data[ptr]) {
+            if (0 > ++data[ptr]) {
                 brainfuck_err_code(ip, "Byte overflow (%d).\n",
                     BRAINFUCK_BYTE_SIZE + 1);
                 ++isError;
@@ -133,9 +131,7 @@ int brainfuck_interpret(char *source) {
             break;
         // Decrement the byte at the data pointer.
         case BRAINFUCK_OP_SUB:
-	    // Compare the byte to its max, because when byte overflows value
-		// returns to the end of the.
-            if (BRAINFUCK_BYTE_SIZE == --data[ptr]) {
+            if (0 > --data[ptr]) {
                 brainfuck_err_code(ip, "Byte overflow (-1).\n");
                 ++isError;
             }
