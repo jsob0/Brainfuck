@@ -81,7 +81,7 @@ Available options:\n\
   -o, --output FILE   Write output to FILE.\n\
   -e, --execute CODE  Execute the code specified by CODE.\n\
 \n\
-For more information or to report bugs, add me on discord sopa#7147\n\
+For more information or to report bugs, add me on discord sopa#7417\n\
 ";
 
 const char *BF_message_version = "\

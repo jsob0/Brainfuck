@@ -36,7 +36,7 @@ The eight language commands each consist of a single character:
 	  -o, --output FILE   Write output to FILE.
 	  -e, --execute CODE  Execute the code specified by CODE.
 
-	For more information or to report bugs, add me on discord sopa#7147
+	For more information or to report bugs, add me on discord sopa#7417
 
 Show help menu without giving any arguments.
 
@@ -51,7 +51,7 @@ Prints the result of the program and the time in which it was execute:
 The interpreter has error handling, it prints the path to the file and the character where the error occurred and below the error message.
 
 	File "hello.bf", char 108
-	Error: Byte overflow (256).
+	Error: Byte overflow (128).
 
 ## Getting the source
 Download the source code by running the following code in your command prompt:
